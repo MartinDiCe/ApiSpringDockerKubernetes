@@ -1,4 +1,4 @@
-package org.mdice.springcloud.msvc.exceptions;
+package org.mdice.springcloud.msvc.users.exceptions;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;
