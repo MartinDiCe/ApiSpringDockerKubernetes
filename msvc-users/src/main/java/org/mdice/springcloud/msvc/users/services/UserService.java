@@ -1,26 +1,28 @@
-package org.mdice.springcloud.msvc.users.services.DTO;
+package org.mdice.springcloud.msvc.users.services;
 
+import org.mdice.springcloud.msvc.users.persistences.entities.Status;
 import org.mdice.springcloud.msvc.users.persistences.entities.User;
+import org.mdice.springcloud.msvc.users.services.DTO.UserInDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
 
-    List<User> usersList();
+    List<User> listUsers();
 
-    Optional<User> userById(Long id);
+    Optional<User> findByIdUser(Long id);
 
-    User userSave(UserInDTO userInDTO);
+    User saveUser(UserInDTO userInDTO);
 
-    void userDelete(Long id);
+    void deleteUser(Long id);
 
-    void userUpdate(Long id, String password, String email);
+    User updateUser(Long id, UserInDTO userInDTO);
 
-    void userActivate(Long id);
+    void activateUser(Long id);
 
-    void userUnActivate(Long id);
+    void unActivateUser(Long id);
 
-    List<User> findAllByStatus(Boolean status);
+    List<User> findAllByStatus(Status status);
 
 }

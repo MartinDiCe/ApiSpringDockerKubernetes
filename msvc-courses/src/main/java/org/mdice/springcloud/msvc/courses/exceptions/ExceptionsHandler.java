@@ -1,4 +1,4 @@
-package org.mdice.springcloud.msvc.users.exceptions;
+package org.mdice.springcloud.msvc.courses.exceptions;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;

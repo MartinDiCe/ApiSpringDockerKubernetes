@@ -1,4 +1,4 @@
-package org.mdice.springcloud.msvc.courses.mvsccourses.context;
+package org.mdice.springcloud.msvc.courses.context;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.mdice.springcloud.msvc.users.controller"))
+                .apis(RequestHandlerSelectors.basePackage("org.mdice.springcloud.msvc.courses.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
@@ -27,8 +27,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "Api User",
-                "My user documentation",
+                "Api Courses",
+                "My api courses documentation",
                 "v0.1",
                 "Term of service",
                 new Contact("Mdice Tech","https://github.com/MartinDiCe/ApiSpringDockerKubernetes", "jamartindice@gmail.com"),
