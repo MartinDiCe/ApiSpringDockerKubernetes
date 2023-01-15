@@ -121,4 +121,9 @@ public class CourseServiceImplement implements CourseService{
         return course;
 
     }
+
+    @Override
+    public Optional<Course> findByName(String name) {
+        return repository.findByName(name);
+    }
 }

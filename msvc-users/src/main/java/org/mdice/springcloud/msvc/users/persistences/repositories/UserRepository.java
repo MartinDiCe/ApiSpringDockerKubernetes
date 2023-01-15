@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 //va long por que la llave primaria es Long (ID de User), además no necesitamos la anotacion @Repository porque por defecto es repository para spring CrudRepository
@@ -17,6 +18,8 @@ public interface UserRepository extends JpaRepository <User, Long> {
 
     public List<User> findAllByStatus(Status status);
 
+    Optional<User> findByEmail(String email);
+    Optional<User> findByUsername(String name);
 
     @Modifying
     @Query(value = "UPDATE users SET users.status = 0 , users.update_Date = CURRENT_TIMESTAMP WHERE id=:id", nativeQuery = true)

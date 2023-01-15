@@ -25,4 +25,6 @@ public interface CourseService {
 
     Course newStatus(Long id, CourseStatus status);
 
+    Optional<Course> findByName (String name);
+
 }

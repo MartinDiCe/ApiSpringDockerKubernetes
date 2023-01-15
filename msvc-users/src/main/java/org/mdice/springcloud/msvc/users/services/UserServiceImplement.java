@@ -88,6 +88,7 @@ public class UserServiceImplement implements UserService {
         }
 
         User user = optionalUser.get();
+        user.setUsername(userInDTO.getUsername());
         user.setPassword(userInDTO.getPassword());
         user.setEmail(userInDTO.getEmail());
         user.setUpdateDate(LocalDateTime.now());
@@ -115,7 +116,7 @@ public class UserServiceImplement implements UserService {
 
     @Override
     @Transactional
-    public void unActivateUser(Long id) {
+    public void inactivateUser(Long id) {
 
         Optional<User> optionalUser = this.repository.findById(id);
 
@@ -134,5 +135,17 @@ public class UserServiceImplement implements UserService {
 
         return this.repository.findAllByStatus(status);
 
+    }
+
+    @Override
+    @Transactional
+    public Optional<User> findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
+    @Transactional
+    public Optional<User> findByUsername(String name) {
+        return repository.findByUsername(name);
     }
 }

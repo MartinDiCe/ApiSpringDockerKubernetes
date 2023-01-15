@@ -9,10 +9,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository <Course, Long> {
 
     public List<Course> findAllByCourseStatus(CourseStatus status);
+
+    Optional<Course> findByName(String name);
 
 }
