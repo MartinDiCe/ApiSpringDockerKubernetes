@@ -21,8 +21,12 @@ public interface UserService {
 
     void activateUser(Long id);
 
-    void unActivateUser(Long id);
+    void inactivateUser(Long id);
 
     List<User> findAllByStatus(Status status);
+
+    Optional<User> findByEmail(String email);
+
+    Optional<User> findByUsername(String name);
 
 }
