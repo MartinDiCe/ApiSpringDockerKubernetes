@@ -5,17 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9afcd000-abb7-4187-b386-dea03d2cf98f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/UserCourse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/Course.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -93,7 +104,7 @@
       <workItem from="1673877758744" duration="817000" />
       <workItem from="1673878600709" duration="3835000" />
       <workItem from="1673890330483" duration="2154000" />
-      <workItem from="1673966343060" duration="1130000" />
+      <workItem from="1673966343060" duration="6982000" />
     </task>
     <servers />
   </component>

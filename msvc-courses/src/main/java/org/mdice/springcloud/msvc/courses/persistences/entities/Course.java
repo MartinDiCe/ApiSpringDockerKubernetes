@@ -6,6 +6,8 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,11 +23,26 @@ public class Course {
     @Column(nullable = true)
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserCourse> usersCourse;
+
     private CourseStatus courseStatus;
 
     private LocalDateTime createDate;
 
     private LocalDateTime updateDate;
+
+    public Course() {
+        usersCourse=new ArrayList<>();
+    }
+
+    public void addUserCourse(UserCourse userCourse){
+        usersCourse.add(userCourse);
+    }
+
+    public void removeUserCourse(UserCourse userCourse){
+        usersCourse.remove(userCourse);
+    }
 
 
 }
