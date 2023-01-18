@@ -31,8 +31,5 @@ public class UserCourse {
         return this.userId != null && this.userId.equals(obj.userId);
     }
 
-    @Override
-    public int hashCode() {
-        return 0;
-    }
+
 }

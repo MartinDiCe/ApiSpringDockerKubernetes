@@ -65,8 +65,15 @@ public class UserController {
             if (service.findByUsername(userInDTO.getUsername()).isPresent()) {
                 return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Username already exists"));
             }
+        }
 
-            if (userInDTO.getEmail().equalsIgnoreCase(userDB.getEmail())) {
+        Optional<User> optionalEmail = service.findByEmail(userInDTO.getEmail());
+
+        if (optionalEmail.isPresent()) {
+
+            User userEmail = optionalEmail.get();
+
+            if (userInDTO.getEmail().equalsIgnoreCase(userEmail.getEmail())) {
                 return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Another user with email " + userInDTO.getEmail() + " already exists"));
             }
 

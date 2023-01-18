@@ -24,6 +24,7 @@ public class Course {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "course_id")
     private List<UserCourse> usersCourse;
 
     private CourseStatus courseStatus;
