@@ -52,36 +52,27 @@ public class UserController {
         ResponseEntity<Map<String, String>> errors = validate(result);
         if (errors != null) return errors;
 
-        Optional<User> optionalUser = service.findByUsername(userInDTO.getUsername());
+        Map<String , String> message = new HashMap();
 
-        if (optionalUser.isPresent()) {
 
-            User userDB = optionalUser.get();
+            if(userInDTO.getUsername().length() == 0  || userInDTO.getUsername() == null){
 
-            if (userInDTO.getUsername().equalsIgnoreCase(userDB.getUsername())) {
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Username already exists"));
             }
+            if(userInDTO.getUsername().length() <= 30  ){
 
-            if (service.findByUsername(userInDTO.getUsername()).isPresent()) {
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Username already exists"));
             }
-        }
+            if(service.findByUsername(userInDTO.getUsername()).isPresent()){
 
-        Optional<User> optionalEmail = service.findByEmail(userInDTO.getEmail());
-
-        if (optionalEmail.isPresent()) {
-
-            User userEmail = optionalEmail.get();
-
-            if (userInDTO.getEmail().equalsIgnoreCase(userEmail.getEmail())) {
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Another user with email " + userInDTO.getEmail() + " already exists"));
             }
+            if(userInDTO.getUsername().length() == 0  || userInDTO.getUsername() == null){
 
-            if (service.findByEmail(userInDTO.getEmail()).isPresent()) {
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Another user with email " + userInDTO.getEmail() + " already exists"));
             }
+            if(userInDTO.getUsername().length() <= 30  ){
 
-        }
+            }
+            if(service.findByUsername(userInDTO.getUsername()).isPresent()){
+
+            }
 
             User user = this.service.saveUser(userInDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
@@ -98,12 +89,14 @@ public class UserController {
 
         Optional<User> optionalUser = service.findByIdUser(id);
 
+        Map<String , String> message = new HashMap();
+
         if (optionalUser.isPresent()) {
 
             User userDB = optionalUser.get();
 
             if (userInDTO.getUsername().equalsIgnoreCase(userDB.getUsername())) {
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Username already exists"));
+                return ResponseEntity.badRequest().body();
             }
 
             if (service.findByUsername(userInDTO.getUsername()).isPresent()) {
