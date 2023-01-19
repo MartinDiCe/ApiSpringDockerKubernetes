@@ -96,7 +96,7 @@ public class UserController {
             User userDB = optionalUser.get();
 
             if (userInDTO.getUsername().equalsIgnoreCase(userDB.getUsername())) {
-                return ResponseEntity.badRequest().body();
+                return ResponseEntity.badRequest().body("a");
             }
 
             if (service.findByUsername(userInDTO.getUsername()).isPresent()) {

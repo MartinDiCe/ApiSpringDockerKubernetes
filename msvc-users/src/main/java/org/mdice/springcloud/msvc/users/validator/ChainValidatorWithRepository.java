@@ -1,4 +1,4 @@
-package org.mdice.springcloud.msvc.users.validator.validations;
+package org.mdice.springcloud.msvc.users.validator;
 
 
 import org.mdice.springcloud.msvc.users.persistences.repositories.UserRepository;

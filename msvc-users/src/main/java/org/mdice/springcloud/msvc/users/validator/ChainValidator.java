@@ -1,6 +1,7 @@
 package org.mdice.springcloud.msvc.users.validator;
 
 import org.mdice.springcloud.msvc.users.services.DTO.UserInDTO;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Map;
 
