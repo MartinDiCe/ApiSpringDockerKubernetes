@@ -17,7 +17,7 @@ public class MessageValidation extends ChainValidator {
     public void validation(UserInDTO userInDTO, JsonObject message) {
         if(message.size() > 0) {
             System.out.println(message);
-            throw new ToDoExceptions(message.toJson(), HttpStatus.NOT_ACCEPTABLE );
+            throw new ToDoExceptions(message.toJson(), HttpStatus.BAD_REQUEST );
         }
     }
 }
