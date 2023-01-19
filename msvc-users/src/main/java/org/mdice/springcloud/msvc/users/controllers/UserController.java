@@ -4,6 +4,7 @@ import org.mdice.springcloud.msvc.users.persistences.entities.Status;
 import org.mdice.springcloud.msvc.users.persistences.entities.User;
 import org.mdice.springcloud.msvc.users.services.DTO.UserInDTO;
 import org.mdice.springcloud.msvc.users.services.UserService;
+import org.mdice.springcloud.msvc.users.validator.NewUserValidation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -48,36 +49,15 @@ public class UserController {
     @PostMapping
     //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> create(@Valid @RequestBody UserInDTO userInDTO, BindingResult result){
-
         ResponseEntity<Map<String, String>> errors = validate(result);
+        NewUserValidation newUserValidation = new NewUserValidation();
+
         if (errors != null) return errors;
 
-        Map<String , String> message = new HashMap();
+        newUserValidation.validate(userInDTO,service);
 
-
-            if(userInDTO.getUsername().length() == 0  || userInDTO.getUsername() == null){
-
-            }
-            if(userInDTO.getUsername().length() <= 30  ){
-
-            }
-            if(service.findByUsername(userInDTO.getUsername()).isPresent()){
-
-            }
-            if(userInDTO.getUsername().length() == 0  || userInDTO.getUsername() == null){
-
-            }
-            if(userInDTO.getUsername().length() <= 30  ){
-
-            }
-            if(service.findByUsername(userInDTO.getUsername()).isPresent()){
-
-            }
-
-            User user = this.service.saveUser(userInDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(user);
-
-
+        User user = this.service.saveUser(userInDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
 

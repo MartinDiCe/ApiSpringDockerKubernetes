@@ -11,7 +11,7 @@ public class NameUserNotNull extends ChainValidator {
 
     public void validation(UserInDTO userInDTO, Map message){
         if(userInDTO.getUsername().length() == 0  || userInDTO.getUsername() == null){
-            message.put("name:", "the name field is empty,");
+            message.put("name", "the name field is empty");
         }
         this.next.validation(userInDTO,message);
 

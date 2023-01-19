@@ -11,7 +11,7 @@ public class MailNotNull extends ChainValidator {
 
         public void validation(UserInDTO userInDTO, Map message){
             if(userInDTO.getEmail().length() == 0  || userInDTO.getEmail() == null){
-                message.put("mail:", "the mail field is empty,");
+                message.put("mail", "the mail field is empty");
             }
             this.next.validation(userInDTO,message);
 

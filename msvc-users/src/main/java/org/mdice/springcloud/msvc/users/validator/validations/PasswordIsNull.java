@@ -11,7 +11,7 @@ public class PasswordIsNull extends ChainValidator {
     @Override
     public void validation(UserInDTO userInDTO, Map message) {
         if (userInDTO.getPassword().length() == 0 || userInDTO.getPassword() == null){
-            message.put("password:","the password is empity,");
+            message.put("password","the password is empity");
         }
         next.validation(userInDTO,message);
 

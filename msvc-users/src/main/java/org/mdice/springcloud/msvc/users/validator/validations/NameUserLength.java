@@ -11,8 +11,8 @@ public class NameUserLength extends ChainValidator {
         @Override
 
         public void validation(UserInDTO userInDTO, Map message){
-            if(userInDTO.getUsername().length() <= 30  ){
-                message.put("name:", "maximum of 30 characters,");
+            if(userInDTO.getUsername().length() >= 30  ){
+                message.put("name", "maximum of 30 characters");
             }
             this.next.validation(userInDTO,message);
         }

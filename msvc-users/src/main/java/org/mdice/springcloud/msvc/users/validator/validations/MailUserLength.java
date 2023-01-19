@@ -9,7 +9,7 @@ import java.util.Map;
 public class MailUserLength extends ChainValidator {
     public void validation(UserInDTO userInDTO, Map message){
         if(userInDTO.getEmail().length() >= 30){
-            message.put("mail:","maximum of 30 characters,");
+            message.put("mail","maximum of 30 characters");
         }
         this.next.validation(userInDTO, message);
 
