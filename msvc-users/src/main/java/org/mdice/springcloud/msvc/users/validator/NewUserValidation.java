@@ -1,5 +1,7 @@
 package org.mdice.springcloud.msvc.users.validator;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.github.cliftonlabs.json_simple.JsonObject;
 import org.mdice.springcloud.msvc.users.persistences.repositories.UserRepository;
 import org.mdice.springcloud.msvc.users.services.DTO.UserInDTO;
 import org.mdice.springcloud.msvc.users.services.UserService;
@@ -11,8 +13,7 @@ import java.util.Map;
 
 public class NewUserValidation {
 
-    Map<String, String> message = new HashMap();
-
+    JsonObject message = new JsonObject();
     private NameUserNotNull nameUserNotNull = new NameUserNotNull();
     private NameUserExist nameUserExist = new NameUserExist();
     private NameUserLength nameUserLength = new NameUserLength();
