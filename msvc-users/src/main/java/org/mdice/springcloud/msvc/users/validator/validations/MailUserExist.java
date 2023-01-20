@@ -13,7 +13,7 @@ public class MailUserExist extends ChainValidatorWithRepository {
     @Override
     public void validation(UserInDTO userInDTO, JsonObject message){
         if(this.service.findByUsername(userInDTO.getUsername()).isPresent()){
-            message.put("name", "Username already exists");
+            message.put("mail", "Username already exists");
         }
         this.next.validation(userInDTO,message);
 
