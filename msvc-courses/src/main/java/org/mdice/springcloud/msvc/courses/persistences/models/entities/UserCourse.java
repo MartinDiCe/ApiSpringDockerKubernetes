@@ -1,10 +1,12 @@
 package org.mdice.springcloud.msvc.courses.persistences.models.entities;
 
-import lombok.Data;
-
+import lombok.Getter;
+import lombok.Setter;
 import javax.persistence.*;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="Users_courses")
 public class UserCourse {
@@ -22,12 +24,11 @@ public class UserCourse {
             return true;
         }
 
-        if (!(o instanceof UserCourse)){
+        if (!(o instanceof UserCourse obj)){
             return false;
         }
 
-        UserCourse obj = (UserCourse) o;
-        return this.userId != null && this.userId.equals(obj.userId);
+        return Objects.equals(this.userId, obj.userId);
     }
 
 

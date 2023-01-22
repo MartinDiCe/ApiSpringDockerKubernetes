@@ -1,7 +1,8 @@
 package org.mdice.springcloud.msvc.courses.persistences.models.entities;
 
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
 
 import javax.persistence.*;
@@ -10,7 +11,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "courses")
 public class Course {
@@ -40,6 +42,7 @@ public class Course {
     public Course() {
 
         usersCourse=new ArrayList<>();
+        users=new ArrayList<>();
 
     }
 
