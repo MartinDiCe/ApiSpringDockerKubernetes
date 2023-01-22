@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9afcd000-abb7-4187-b386-dea03d2cf98f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/UserCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/UserCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/mapper/CourseInDTOToCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/mapper/CourseInDTOToCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/CourseStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/CourseStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/entities/UserCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/UserCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/repositories/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/repositories/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/persistences/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/persistences/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/DTO/UserInDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/DTO/UserInDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -31,15 +41,24 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2KPNe1HWCZWsZpQES0wKmkRx3vi" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -66,10 +85,15 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "Runtime.Targets.Configurable",
-    "spring.configuration.checksum": "8824cc6d441b604f240b4fede03ae5b7",
+    "spring.configuration.checksum": "4f4bfc270417a9788cf5948481515f89",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.mdice.springcloud.msvc.courses.persistences.models" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -79,7 +103,7 @@
   </component>
   <component name="RunManager" selected="Spring Boot.MsvcUsersApplication">
     <configuration name="MsvcCoursesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="mvsc-courses" />
+      <option name="ACTIVE_PROFILES" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.mdice.springcloud.msvc.courses.MsvcCoursesApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -92,6 +116,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.MsvcUsersApplication" />
+      <item itemvalue="Spring Boot.MsvcCoursesApplication" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -108,6 +136,7 @@
       <workItem from="1673890330483" duration="2154000" />
       <workItem from="1673966343060" duration="7158000" />
       <workItem from="1673986262021" duration="4975000" />
+      <workItem from="1674245913661" duration="7774000" />
     </task>
     <servers />
   </component>

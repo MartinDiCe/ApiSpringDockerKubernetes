@@ -1,9 +1,8 @@
-package org.mdice.springcloud.msvc.courses.persistences.entities;
+package org.mdice.springcloud.msvc.courses.persistences.models.entities;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Data
 @Entity

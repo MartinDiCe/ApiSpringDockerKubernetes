@@ -59,7 +59,7 @@ public class UserController {
             User userDB = optionalUser.get();
 
             if (userInDTO.getUsername().equalsIgnoreCase(userDB.getUsername())) {
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Username already exists"));
+                return ResponseEntity.badRequest().body(Collections.singletonMap("Username: ", "Username already exists"));
             }
 
             if (service.findByUsername(userInDTO.getUsername()).isPresent()) {
@@ -156,7 +156,7 @@ public class UserController {
     private ResponseEntity<Map<String,String>> validate(BindingResult result) {
         if (result.hasErrors()){
             Map<String, String> errors = new HashMap<>();
-            result.getFieldErrors().forEach(err -> errors.put(err.getField(), "Field " + err.getField() + " " + err.getDefaultMessage()));
+            result.getFieldErrors().forEach(err -> errors.put(err.getField(), err.getDefaultMessage()));
             return ResponseEntity.badRequest().body(errors);
         }
 

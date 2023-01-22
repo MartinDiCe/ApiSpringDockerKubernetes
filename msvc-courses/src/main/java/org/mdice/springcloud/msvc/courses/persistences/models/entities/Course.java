@@ -1,7 +1,8 @@
-package org.mdice.springcloud.msvc.courses.persistences.entities;
+package org.mdice.springcloud.msvc.courses.persistences.models.entities;
 
 
 import lombok.Data;
+import org.mdice.springcloud.msvc.courses.persistences.models.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -27,6 +28,9 @@ public class Course {
     @JoinColumn(name = "course_id")
     private List<UserCourse> usersCourse;
 
+    @Transient
+    private List<User> users;
+
     private CourseStatus courseStatus;
 
     private LocalDateTime createDate;
@@ -34,15 +38,21 @@ public class Course {
     private LocalDateTime updateDate;
 
     public Course() {
+
         usersCourse=new ArrayList<>();
+
     }
 
     public void addUserCourse(UserCourse userCourse){
+
         usersCourse.add(userCourse);
+
     }
 
     public void removeUserCourse(UserCourse userCourse){
+
         usersCourse.remove(userCourse);
+
     }
 
 

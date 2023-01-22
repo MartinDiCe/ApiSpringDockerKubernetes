@@ -1,7 +1,7 @@
 package org.mdice.springcloud.msvc.courses.controllers;
 
-import org.mdice.springcloud.msvc.courses.persistences.entities.Course;
-import org.mdice.springcloud.msvc.courses.persistences.entities.CourseStatus;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.CourseStatus;
 import org.mdice.springcloud.msvc.courses.services.CourseService;
 import org.mdice.springcloud.msvc.courses.services.DTO.CourseInDTO;
 import org.springframework.http.HttpStatus;
