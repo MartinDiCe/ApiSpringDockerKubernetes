@@ -140,12 +140,25 @@ public class UserServiceImplement implements UserService {
     @Override
     @Transactional
     public Optional<User> findByEmail(String email) {
+        Optional<User> optionalUser = this.repository.findByEmail(email);
+
+        if (optionalUser.isEmpty()){
+            throw new ToDoExceptions("email not found", HttpStatus.NOT_FOUND);
+        }
         return repository.findByEmail(email);
     }
 
     @Override
     @Transactional
-    public Optional<User> findByUsername(String name) {
-        return repository.findByUsername(name);
+    public Optional<User> findByUsername(String username) {
+
+        Optional<User> optionalUser = this.repository.findByUsername(username);
+
+        if (optionalUser.isEmpty()){
+            throw new ToDoExceptions("username not found", HttpStatus.NOT_FOUND);
+        }
+
+        return repository.findByUsername(username);
+
     }
 }

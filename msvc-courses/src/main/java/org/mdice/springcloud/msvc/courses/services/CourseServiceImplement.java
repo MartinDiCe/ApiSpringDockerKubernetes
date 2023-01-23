@@ -4,6 +4,7 @@ import org.mdice.springcloud.msvc.courses.Clients.UserClientRest;
 import org.mdice.springcloud.msvc.courses.exceptions.ToDoExceptions;
 import org.mdice.springcloud.msvc.courses.mapper.CourseInDTOToCourse;
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
+import org.mdice.springcloud.msvc.courses.persistences.models.UserInDTO;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.CourseStatus;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.UserCourse;
@@ -138,7 +139,7 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> o = repository.findById(idCourse);
 
         if (o.isPresent()){
-            User msvcUser = client.getById(user.getId());
+            User msvcUser = client.getByUsername(user.getUsername());
 
             Course course = o.get();
             UserCourse userCourse = new UserCourse();
@@ -161,7 +162,16 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> o = repository.findById(idCourse);
 
         if (o.isPresent()){
-            User msvcNewUser = client.create(user);
+            User msvcUser = client.getByUsername(user.getUsername());
+
+
+            UserInDTO msvcUserInDTO = null;
+
+            msvcUserInDTO.setUsername(msvcUser.getUsername());
+            msvcUserInDTO.setEmail(msvcUser.getEmail());
+            msvcUserInDTO.setPassword(msvcUser.getPassword());
+
+            User msvcNewUser = client.create(msvcUserInDTO);
 
             Course course = o.get();
             UserCourse userCourse = new UserCourse();

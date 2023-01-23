@@ -26,14 +26,12 @@ public class UserController {
 
     }
 
-
     @GetMapping
     public List<User> listAll() {
 
         return service.listUsers();
 
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
@@ -44,6 +42,14 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/username/{username}")
+    public ResponseEntity<?> getByUsername(@PathVariable(name = "username") String username) {
+        Optional<User> userOptional = service.findByUsername(username);
+        if (userOptional.isPresent()){
+            return ResponseEntity.ok().body(userOptional.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     @PostMapping
     //@ResponseStatus(HttpStatus.CREATED)
