@@ -1,11 +1,14 @@
 package org.mdice.springcloud.msvc.users.services.DTO;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.validation.constraints.*;
 
-@Data
+@Getter
+@Setter
 public class UserInDTO {
 
     @NotBlank(message = "cannot be empty")
