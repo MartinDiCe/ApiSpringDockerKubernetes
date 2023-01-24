@@ -139,16 +139,20 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> o = repository.findById(idCourse);
 
         if (o.isPresent()){
-            User msvcUser = client.getByUsername(user.getUsername());
+            Optional<User> ou = client.getByUsername(user.getUsername());
 
-            Course course = o.get();
-            UserCourse userCourse = new UserCourse();
-            userCourse.setUserId(msvcUser.getId());
+            if (ou.isPresent()) {
+                User msvcUser = ou.get();
+                Course course = o.get();
+                UserCourse userCourse = new UserCourse();
+                userCourse.setUserId(msvcUser.getId());
 
-            course.addUserCourse(userCourse);
-            repository.save(course);
+                course.addUserCourse(userCourse);
+                repository.save(course);
 
-            return Optional.of(msvcUser);
+                return Optional.of(msvcUser);
+            }
+            return Optional.empty();
         }
 
         return Optional.empty();
@@ -162,28 +166,32 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> o = repository.findById(idCourse);
 
         if (o.isPresent()){
-            User msvcUser = client.getByUsername(user.getUsername());
 
+            Optional<User> ou = client.getByUsername(user.getUsername());
 
-            UserInDTO msvcUserInDTO = null;
+            if(!ou.isPresent()) {
 
-            msvcUserInDTO.setUsername(msvcUser.getUsername());
-            msvcUserInDTO.setEmail(msvcUser.getEmail());
-            msvcUserInDTO.setPassword(msvcUser.getPassword());
+                UserInDTO msvcUserInDTO = null;
 
-            User msvcNewUser = client.create(msvcUserInDTO);
+                msvcUserInDTO.setUsername(user.getUsername());
+                msvcUserInDTO.setEmail(user.getEmail());
+                msvcUserInDTO.setPassword(user.getPassword());
 
-            Course course = o.get();
-            UserCourse userCourse = new UserCourse();
-            userCourse.setUserId(msvcNewUser.getId());
+                User msvcNewUser = client.create(msvcUserInDTO);
 
-            course.addUserCourse(userCourse);
-            repository.save(course);
+                Course course = o.get();
+                UserCourse userCourse = new UserCourse();
+                userCourse.setUserId(msvcNewUser.getId());
 
-            return Optional.of(msvcNewUser);
-        }
+                course.addUserCourse(userCourse);
+                repository.save(course);
 
-        return Optional.empty();
+                return Optional.of(msvcNewUser);
+            }
+            return Optional.empty();
+            }
+            return Optional.empty();
+
     }
 
     @Transactional
@@ -193,19 +201,24 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> o = repository.findById(idCourse);
 
         if (o.isPresent()){
-            User msvcUser = client.getById(user.getId());
+            Optional<User> ou = client.getById(user.getId());
 
-            Course course = o.get();
-            UserCourse userCourse = new UserCourse();
-            userCourse.setUserId(msvcUser.getId());
+            if(ou.isPresent()) {
+                User msvcUser = ou.get();
+                Course course = o.get();
+                UserCourse userCourse = new UserCourse();
+                userCourse.setUserId(msvcUser.getId());
 
-            course.removeUserCourse(userCourse);
-            repository.save(course);
+                course.removeUserCourse(userCourse);
+                repository.save(course);
 
-            return Optional.of(msvcUser);
+                return Optional.of(msvcUser);
+            }
+            return Optional.empty();
         }
 
         return Optional.empty();
 
     }
+
 }

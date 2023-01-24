@@ -33,5 +33,4 @@ public interface CourseService {
 
     Optional<User> deleteUserCourse(User user, Long idCourse);
 
-
 }
