@@ -6,6 +6,7 @@ import org.mdice.springcloud.msvc.users.persistences.entities.Status;
 import org.mdice.springcloud.msvc.users.persistences.entities.User;
 import org.mdice.springcloud.msvc.users.persistences.repositories.UserRepository;
 import org.mdice.springcloud.msvc.users.services.DTO.UserInDTO;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -155,7 +156,8 @@ public class UserServiceImplement implements UserService {
         Optional<User> optionalUser = this.repository.findByUsername(username);
 
         if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("username not found", HttpStatus.NOT_FOUND);
+            throw new ToDoExceptions("username not found", HttpStatus.NO_CONTENT);
+
         }
 
         return repository.findByUsername(username);

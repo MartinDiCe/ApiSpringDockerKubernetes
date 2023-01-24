@@ -29,7 +29,7 @@ public interface CourseService {
 
     Optional<User> addUser(User user, Long idCourse);
 
-    Optional<User> createUserCourse(User user, Long idCourse);
+    Optional <User> createUserCourse(User user, Long idCourse);
 
     Optional<User> deleteUserCourse(User user, Long idCourse);
 

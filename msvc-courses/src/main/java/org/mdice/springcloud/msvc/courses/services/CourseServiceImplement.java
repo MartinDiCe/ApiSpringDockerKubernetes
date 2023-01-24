@@ -171,7 +171,7 @@ public class CourseServiceImplement implements CourseService{
 
             if(!ou.isPresent()) {
 
-                UserInDTO msvcUserInDTO = null;
+                UserInDTO msvcUserInDTO = new UserInDTO();
 
                 msvcUserInDTO.setUsername(user.getUsername());
                 msvcUserInDTO.setEmail(user.getEmail());
