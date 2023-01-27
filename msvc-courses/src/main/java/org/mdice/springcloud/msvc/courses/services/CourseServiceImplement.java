@@ -1,7 +1,6 @@
 package org.mdice.springcloud.msvc.courses.services;
 
 import org.mdice.springcloud.msvc.courses.Clients.UserClientRest;
-import org.mdice.springcloud.msvc.courses.exceptions.ToDoExceptions;
 import org.mdice.springcloud.msvc.courses.mapper.CourseInDTOToCourse;
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
 import org.mdice.springcloud.msvc.courses.persistences.models.UserInDTO;
@@ -10,7 +9,6 @@ import org.mdice.springcloud.msvc.courses.persistences.models.entities.CourseSta
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.UserCourse;
 import org.mdice.springcloud.msvc.courses.persistences.repositories.CourseRepository;
 import org.mdice.springcloud.msvc.courses.services.DTO.CourseInDTO;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,12 +16,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class CourseServiceImplement implements CourseService{
 
     private final CourseRepository repository;
     private final CourseInDTOToCourse mapper;
-
     private final UserClientRest client;
 
     public CourseServiceImplement(CourseRepository repository, CourseInDTOToCourse mapperCourse, UserClientRest client) {
@@ -48,7 +46,9 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> optional = this.repository.findById(id);
 
         if (optional.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         return repository.findById(id);
@@ -60,7 +60,6 @@ public class CourseServiceImplement implements CourseService{
     public Course saveCourse(CourseInDTO courseInDTO) {
 
         Course course = mapper.map(courseInDTO);
-
         return repository.save(course);
 
     }
@@ -72,7 +71,9 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> optionalUser = this.repository.findById(id);
 
         if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         this.repository.deleteById(id);
@@ -86,12 +87,15 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> optional = this.repository.findById(id);
 
         if (optional.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         Course course = optional.get();
         course.setName(courseInDTO.getName());
         course.setUpdateDate(LocalDateTime.now());
+
         repository.save(course);
 
         return course;
@@ -113,11 +117,12 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> optional = this.repository.findById(id);
 
         if (optional.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         Course course = optional.get();
-
         course.setCourseStatus(status);
         repository.save(course);
 
@@ -138,24 +143,31 @@ public class CourseServiceImplement implements CourseService{
 
         Optional<Course> o = repository.findById(idCourse);
 
-        if (o.isPresent()){
-            Optional<User> ou = client.getByUsername(user.getUsername());
+        if (o.isEmpty()) {
 
-            if (ou.isPresent()) {
-                User msvcUser = ou.get();
-                Course course = o.get();
-                UserCourse userCourse = new UserCourse();
-                userCourse.setUserId(msvcUser.getId());
-
-                course.addUserCourse(userCourse);
-                repository.save(course);
-
-                return Optional.of(msvcUser);
-            }
             return Optional.empty();
+
         }
 
-        return Optional.empty();
+        Optional<User> ou = client.getByUsername(user.getUsername());
+
+        if (ou.isEmpty()) {
+
+            return Optional.empty();
+
+        }
+
+        User msvcUser = ou.get();
+        Course course = o.get();
+
+
+        UserCourse userCourse = new UserCourse();
+        userCourse.setUserId(msvcUser.getId());
+
+        course.addUserCourse(userCourse);
+        repository.save(course);
+
+        return Optional.of(msvcUser);
 
     }
 
@@ -221,4 +233,30 @@ public class CourseServiceImplement implements CourseService{
 
     }
 
+    @Override
+    public Optional<UserCourse> findUserId(Course course, Long userId) {
+
+        Optional<Course> o = repository.findById(course.getId());
+
+        if (o.isPresent()) {
+
+            List<UserCourse> userCourse = o.get().getUsersCourse();
+
+            for (UserCourse uc: userCourse){
+
+                if (uc.getId().equals(userId)){
+
+                    return Optional.of(uc);
+
+                }
+
+            }
+
+            return Optional.empty();
+
+        }
+
+        return Optional.empty();
+
+    }
 }

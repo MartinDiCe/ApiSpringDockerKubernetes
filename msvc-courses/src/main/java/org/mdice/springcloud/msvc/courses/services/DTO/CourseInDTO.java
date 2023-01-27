@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.validation.constraints.*;
 
+
 @Data
 public class CourseInDTO {
 

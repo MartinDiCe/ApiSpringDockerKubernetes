@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.*;
 import java.util.*;
 
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/courseApi")
@@ -27,7 +28,6 @@ public class courseController {
 
     }
 
-
     @GetMapping
     public List<Course> listAll() {
 
@@ -35,19 +35,20 @@ public class courseController {
 
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
 
         Optional<Course> userOptional = service.findCourseById(id);
+
         if (userOptional.isPresent()){
+
             return ResponseEntity.ok().body(userOptional.get());
+
         }
 
         return ResponseEntity.notFound().build();
 
     }
-
 
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody CourseInDTO courseInDTO, BindingResult result){
@@ -63,18 +64,23 @@ public class courseController {
             Course courseDB = optionalCourse.get();
 
             if (courseInDTO.getName().equalsIgnoreCase(courseDB.getName())) {
+
                 return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Course already exists"));
+
             }
 
             if (service.findByName(courseInDTO.getName()).isPresent()) {
+
                 return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Course already exists"));
+
             }
         }
 
         Course course = this.service.saveCourse(courseInDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(course);
-    }
 
+        return ResponseEntity.status(HttpStatus.CREATED).body(course);
+
+    }
 
     @PutMapping ( "/{id}")
     public ResponseEntity<?> update(@Valid @RequestBody CourseInDTO courseInDTO, BindingResult result, @PathVariable("id") Long id){
@@ -89,49 +95,74 @@ public class courseController {
             Course courseDB = optionalCourse.get();
 
             if (courseInDTO.getName().equalsIgnoreCase(courseDB.getName())) {
+
                 return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Course already exists"));
+
             }
 
             if (service.findByName(courseInDTO.getName()).isPresent()) {
+
                 return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Course already exists"));
+
             }
         }
+
             Course course = this.service.updateCourse(id, courseInDTO);
+
             return ResponseEntity.status(HttpStatus.OK).body(course);
 
     }
 
     @PutMapping("change-status/{id}")
     public ResponseEntity<?> activate(@PathVariable("id") Long id, @Valid @RequestBody CourseStatus status){
-        this.service.newStatus(id, status);
-        return ResponseEntity.status(HttpStatus.OK).body("Course with id: " +id +" was updated to new status: " +status+ " successfully");
-    }
 
+        this.service.newStatus(id, status);
+
+        return ResponseEntity.status(HttpStatus.OK)
+                        .body("Course with id: " +id +" was updated to new status: " +status+ " successfully");
+
+    }
 
     @GetMapping("/status/{status}")
     public List<Course> findAllByStatus(@PathVariable("status") CourseStatus status){
-        return this.service.finAllByStatus(status);
-    }
 
+        return this.service.finAllByStatus(status);
+
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id){
+
         this.service.deleteCourse(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Course with id: " +id+" was deleted successfully");
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("Course with id: " +id+" was deleted successfully");
+
     }
 
     @PutMapping("/add-user/{idCourse}")
     public ResponseEntity<?> addUserToCourse(@RequestBody User user, @PathVariable Long idCourse){
+
         Optional<User> o;
+
         try {
+
             o = service.addUser(user, idCourse);
+
         }
+
         catch (FeignException e) {
+
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
+
                     .body(Collections.singletonMap("error","User no exist or Api not response" + e.getMessage()));
+
         }
+
         if (o.isPresent()) {
+
             return ResponseEntity.status(HttpStatus.CREATED).body(o.get());
+
         }
 
         return ResponseEntity.notFound().build();
@@ -140,16 +171,26 @@ public class courseController {
 
     @PostMapping("/create-user/{idCourse}")
     public ResponseEntity<?> createUserToCourse(@RequestBody User user, @PathVariable Long idCourse){
+
         Optional<User> o;
+
         try {
+
             o = service.createUserCourse(user, idCourse);
+
         }
+
         catch (FeignException e) {
+
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Collections.singletonMap("error","cannot create user or Api not response" + e.getMessage()));
+
         }
+
         if (o.isPresent()) {
+
             return ResponseEntity.status(HttpStatus.CREATED).body(o.get());
+
         }
 
         return ResponseEntity.notFound().build();
@@ -158,16 +199,26 @@ public class courseController {
 
     @DeleteMapping ("/delete-user/{idCourse}")
     public ResponseEntity<?> deleteUserToCourse(@RequestBody User user, @PathVariable Long idCourse){
+
         Optional<User> o;
+
         try {
+
             o = service.deleteUserCourse(user, idCourse);
+
         }
+
         catch (FeignException e) {
+
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Collections.singletonMap("error","User no exist or Api not response" + e.getMessage()));
+
         }
+
         if (o.isPresent()) {
+
             return ResponseEntity.status(HttpStatus.OK).body(o.get());
+
         }
 
         return ResponseEntity.notFound().build();
@@ -175,13 +226,17 @@ public class courseController {
     }
 
     private ResponseEntity<Map<String,String>> validate(BindingResult result) {
+
         if (result.hasErrors()){
+
             Map<String, String> errors = new HashMap<>();
+
             result.getFieldErrors().forEach(err -> errors.put(err.getField(), "Field " + err.getField() + " " + err.getDefaultMessage()));
+
             return ResponseEntity.badRequest().body(errors);
+
         }
 
         return null;
     }
-
 }

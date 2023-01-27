@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+
 @Component
 public class CourseInDTOToCourse implements IMapper<CourseInDTO, Course>{
     @Override
@@ -21,6 +22,6 @@ public class CourseInDTOToCourse implements IMapper<CourseInDTO, Course>{
         course.setUpdateDate(null);
 
         return course;
-    }
 
+    }
 }

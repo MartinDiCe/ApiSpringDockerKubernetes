@@ -7,10 +7,13 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+
 @Component
 public class UserInDTOToUser implements IMapper<UserInDTO, User>{
+
         @Override
         public User map(UserInDTO in) {
+
             User user = new User();
 
             user.setUsername(in.getUsername());
@@ -21,6 +24,6 @@ public class UserInDTOToUser implements IMapper<UserInDTO, User>{
             user.setUpdateDate(null);
 
             return user;
-        }
 
+        }
     }

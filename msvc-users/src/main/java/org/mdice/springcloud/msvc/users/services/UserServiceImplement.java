@@ -15,19 +15,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class UserServiceImplement implements UserService {
 
     private final UserRepository repository;
-
     private final UserInDTOToUser mapper;
 
 
     public UserServiceImplement(UserRepository repository, UserInDTOToUser mapper) {
+
         this.repository = repository;
         this.mapper = mapper;
-    }
 
+    }
 
     @Override
     @Transactional(readOnly = true)
@@ -37,21 +38,21 @@ public class UserServiceImplement implements UserService {
 
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public Optional<User> findByIdUser(Long id) {
 
         Optional<User> optionalUser = this.repository.findById(id);
 
-        if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+        if (optionalUser.isEmpty()) {
+
+            this.repository.findById(id);
+
         }
 
         return repository.findById(id);
 
     }
-
 
     @Override
     @Transactional
@@ -69,14 +70,15 @@ public class UserServiceImplement implements UserService {
 
         Optional<User> optionalUser = this.repository.findById(id);
 
-        if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+        if (optionalUser.isEmpty()) {
+
+            this.repository.findById(id);
+
         }
 
         this.repository.deleteById(id);
 
     }
-
 
     @Override
     @Transactional
@@ -84,8 +86,13 @@ public class UserServiceImplement implements UserService {
 
         Optional<User> optionalUser = this.repository.findById(id);
 
-        if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+        if (optionalUser.isEmpty()) {
+
+            User userNotFound;
+            userNotFound = optionalUser.get();
+
+            return userNotFound;
+
         }
 
         User user = optionalUser.get();
@@ -100,7 +107,6 @@ public class UserServiceImplement implements UserService {
 
     }
 
-
     @Override
     @Transactional
     public void activateUser(Long id) {
@@ -108,7 +114,9 @@ public class UserServiceImplement implements UserService {
         Optional<User> optionalUser = this.repository.findById(id);
 
         if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         this.repository.activateUser(id);
@@ -122,13 +130,14 @@ public class UserServiceImplement implements UserService {
         Optional<User> optionalUser = this.repository.findById(id);
 
         if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         this.repository.unActivateUser(id);
 
     }
-
 
     @Override
     @Transactional(readOnly = true)
@@ -141,26 +150,17 @@ public class UserServiceImplement implements UserService {
     @Override
     @Transactional
     public Optional<User> findByEmail(String email) {
-        Optional<User> optionalUser = this.repository.findByEmail(email);
 
-        if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("email not found", HttpStatus.NOT_FOUND);
-        }
         return repository.findByEmail(email);
+
     }
 
     @Override
     @Transactional
     public Optional<User> findByUsername(String username) {
 
-        Optional<User> optionalUser = this.repository.findByUsername(username);
-
-        if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("username not found", HttpStatus.NO_CONTENT);
-
-        }
-
         return repository.findByUsername(username);
 
     }
+
 }

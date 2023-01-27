@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
+
 @Getter
 @Setter
 @Entity
@@ -35,6 +36,5 @@ public class User {
     private Status status;
 
     private LocalDateTime updateDate;
-
 
 }

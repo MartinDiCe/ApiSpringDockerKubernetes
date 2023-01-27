@@ -3,13 +3,14 @@ package org.mdice.springcloud.msvc.courses.services;
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.CourseStatus;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.UserCourse;
 import org.mdice.springcloud.msvc.courses.services.DTO.CourseInDTO;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface CourseService {
 
+public interface CourseService {
 
     List<Course> listCourses();
 
@@ -32,5 +33,7 @@ public interface CourseService {
     Optional <User> createUserCourse(User user, Long idCourse);
 
     Optional<User> deleteUserCourse(User user, Long idCourse);
+
+    Optional<UserCourse> findUserId(Course course, Long userId);
 
 }

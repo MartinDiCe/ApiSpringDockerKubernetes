@@ -7,6 +7,7 @@ import org.mdice.springcloud.msvc.users.services.DTO.UserInDTO;
 import java.util.List;
 import java.util.Optional;
 
+
 public interface UserService {
 
     List<User> listUsers();

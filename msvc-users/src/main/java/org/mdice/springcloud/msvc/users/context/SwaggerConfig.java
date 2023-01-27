@@ -12,20 +12,25 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collections;
 
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+
     @Bean
     public Docket api() {
+
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("org.mdice.springcloud.msvc.users.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
+
     }
 
     private ApiInfo apiInfo() {
+
         return new ApiInfo(
                 "Api User",
                 "My user documentation",
@@ -33,5 +38,6 @@ public class SwaggerConfig {
                 "Term of service",
                 new Contact("Mdice Tech","https://github.com/MartinDiCe/ApiSpringDockerKubernetes", "jamartindice@gmail.com"),
                 "License of API", "Api License URL", Collections.emptyList());
+
     }
 }
