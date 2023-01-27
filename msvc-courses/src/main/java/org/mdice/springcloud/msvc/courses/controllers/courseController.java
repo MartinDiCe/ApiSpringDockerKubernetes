@@ -195,6 +195,15 @@ public class courseController {
     @PostMapping("/create-user/{idCourse}")
     public ResponseEntity<?> createUserToCourse(@RequestBody UserInDTO user, @PathVariable Long idCourse){
 
+        Optional<Course> oc = service.findCourseById(idCourse);
+
+        if (oc.isEmpty()) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error","Course not exists"));
+
+        }
+
         Optional<UserCourse> o;
 
         try {
@@ -210,7 +219,7 @@ public class courseController {
 
         }
 
-        if (o.isPresent()) {
+        if (o.isEmpty()) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Collections.singletonMap("error","Username already exists for this course"));
@@ -223,6 +232,15 @@ public class courseController {
 
     @DeleteMapping ("/delete-user/{idCourse}")
     public ResponseEntity<?> deleteUserToCourse(@RequestBody UserInDTO user, @PathVariable Long idCourse){
+
+        Optional<Course> oc = service.findCourseById(idCourse);
+
+        if (oc.isEmpty()) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error","Course not exists"));
+
+        }
 
         Optional<UserCourse> o;
 
