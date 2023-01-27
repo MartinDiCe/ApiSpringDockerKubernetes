@@ -6,34 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9afcd000-abb7-4187-b386-dea03d2cf98f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/context/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/context/SwaggerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/exceptions/ExceptionsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/exceptions/ExceptionsHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/exceptions/ToDoExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/exceptions/ToDoExceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/mapper/CourseInDTOToCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/mapper/CourseInDTOToCourse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/mapper/IMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/mapper/IMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/mapper/UserInDTOToUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/mapper/UserInDTOToUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/UserInDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/UserInDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/CourseStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/CourseStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/UserCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/UserCourse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/repositories/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/repositories/CourseRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/DTO/CourseInDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/DTO/CourseInDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/context/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/context/SwaggerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/exceptions/ExceptionsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/exceptions/ExceptionsHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/exceptions/ToDoExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/exceptions/ToDoExceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/mapper/IMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/mapper/IMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/mapper/UserInDTOToUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/mapper/UserInDTOToUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/persistences/entities/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/persistences/entities/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/persistences/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/persistences/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/persistences/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/persistences/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserServiceImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +96,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MsvcUsersApplication">
+  <component name="RunManager" selected="Spring Boot.MsvcCoursesApplication">
     <configuration name="MsvcCoursesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" />
       <module name="msvc-courses" />
@@ -158,7 +134,7 @@
       <workItem from="1673986262021" duration="4975000" />
       <workItem from="1674245913661" duration="40077000" />
       <workItem from="1674567156171" duration="13755000" />
-      <workItem from="1674739555700" duration="12423000" />
+      <workItem from="1674739555700" duration="23199000" />
     </task>
     <servers />
   </component>
@@ -193,7 +169,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java</url>
-          <line>202</line>
+          <line>226</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -202,9 +178,9 @@
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java</url>
-          <line>181</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java</url>
+          <line>205</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

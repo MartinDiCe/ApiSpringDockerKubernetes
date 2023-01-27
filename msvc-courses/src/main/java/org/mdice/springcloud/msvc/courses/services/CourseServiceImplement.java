@@ -139,7 +139,7 @@ public class CourseServiceImplement implements CourseService{
 
     @Transactional
     @Override
-    public Optional<User> addUser(User user, Long idCourse) {
+    public Optional<UserCourse> addUser(UserInDTO user, Long idCourse) {
 
         Optional<Course> o = repository.findById(idCourse);
 
@@ -167,74 +167,83 @@ public class CourseServiceImplement implements CourseService{
         course.addUserCourse(userCourse);
         repository.save(course);
 
-        return Optional.of(msvcUser);
+        return Optional.of(userCourse);
 
     }
 
     @Transactional
     @Override
-    public Optional<User> createUserCourse(User user, Long idCourse) {
+    public Optional<UserCourse> createUserCourse(UserInDTO user, Long idCourse) {
 
         Optional<Course> o = repository.findById(idCourse);
 
-        if (o.isPresent()){
+        if (o.isEmpty()) {
+
+            return Optional.empty();
+
+        }
 
             Optional<User> ou = client.getByUsername(user.getUsername());
 
-            if(!ou.isPresent()) {
+            if(ou.isPresent()) {
 
-                UserInDTO msvcUserInDTO = new UserInDTO();
+                return Optional.empty();
 
-                msvcUserInDTO.setUsername(user.getUsername());
-                msvcUserInDTO.setEmail(user.getEmail());
-                msvcUserInDTO.setPassword(user.getPassword());
-
-                User msvcNewUser = client.create(msvcUserInDTO);
-
-                Course course = o.get();
-                UserCourse userCourse = new UserCourse();
-                userCourse.setUserId(msvcNewUser.getId());
-
-                course.addUserCourse(userCourse);
-                repository.save(course);
-
-                return Optional.of(msvcNewUser);
             }
-            return Optional.empty();
-            }
-            return Optional.empty();
+
+        UserInDTO msvcUserInDTO = new UserInDTO();
+
+        msvcUserInDTO.setUsername(user.getUsername());
+        msvcUserInDTO.setEmail(user.getEmail());
+        msvcUserInDTO.setPassword(user.getPassword());
+
+        User msvcNewUser = client.create(msvcUserInDTO);
+
+        Course course = o.get();
+        UserCourse userCourse = new UserCourse();
+        userCourse.setUserId(msvcNewUser.getId());
+
+        course.addUserCourse(userCourse);
+        repository.save(course);
+
+        return Optional.of(userCourse);
 
     }
 
     @Transactional
     @Override
-    public Optional<User> deleteUserCourse(User user, Long idCourse) {
+    public Optional<UserCourse> deleteUserCourse(UserInDTO user, Long idCourse) {
 
         Optional<Course> o = repository.findById(idCourse);
 
-        if (o.isPresent()){
-            Optional<User> ou = client.getById(user.getId());
+        if (o.isEmpty()) {
 
-            if(ou.isPresent()) {
-                User msvcUser = ou.get();
-                Course course = o.get();
-                UserCourse userCourse = new UserCourse();
-                userCourse.setUserId(msvcUser.getId());
-
-                course.removeUserCourse(userCourse);
-                repository.save(course);
-
-                return Optional.of(msvcUser);
-            }
             return Optional.empty();
+
         }
 
-        return Optional.empty();
+        Optional<User> ou = client.getByUsername(user.getUsername());
+
+        if(ou.isEmpty()) {
+
+            return Optional.empty();
+
+        }
+
+        User msvcUser = ou.get();
+        Course course = o.get();
+        UserCourse userCourse = new UserCourse();
+        userCourse.setUserId(msvcUser.getId());
+
+        course.removeUserCourse(userCourse);
+        repository.save(course);
+
+        return Optional.of(userCourse);
 
     }
 
     @Override
-    public Optional<UserCourse> findUserId(Course course, Long userId) {
+    public Optional<UserCourse> findUserId(Course course, UserInDTO user) {
 
         Optional<Course> o = repository.findById(course.getId());
 
@@ -242,9 +251,17 @@ public class CourseServiceImplement implements CourseService{
 
             List<UserCourse> userCourse = o.get().getUsersCourse();
 
+            Optional <User> ou = client.getByUsername(user.getUsername());
+
+            if (ou.isEmpty()){
+
+                return Optional.empty();
+
+            }
+
             for (UserCourse uc: userCourse){
 
-                if (uc.getId().equals(userId)){
+                if (uc.getUserId().equals(ou.get().getId())) {
 
                     return Optional.of(uc);
 

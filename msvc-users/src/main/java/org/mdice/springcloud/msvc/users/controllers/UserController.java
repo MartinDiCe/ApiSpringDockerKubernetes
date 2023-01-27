@@ -54,13 +54,13 @@ public class UserController {
 
         Optional<User> userOptional = service.findByUsername(username);
 
-        if (userOptional.isPresent()){
+        if (userOptional.isEmpty()){
 
-            return ResponseEntity.ok().body(userOptional.get());
+            return ResponseEntity.noContent().build();
 
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().body(userOptional.get());
 
     }
 

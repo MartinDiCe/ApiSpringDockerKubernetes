@@ -1,6 +1,7 @@
 package org.mdice.springcloud.msvc.courses.services;
 
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
+import org.mdice.springcloud.msvc.courses.persistences.models.UserInDTO;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.CourseStatus;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.UserCourse;
@@ -28,12 +29,12 @@ public interface CourseService {
 
     Optional<Course> findByName(String name);
 
-    Optional<User> addUser(User user, Long idCourse);
+    Optional<UserCourse> addUser(UserInDTO user, Long idCourse);
 
-    Optional <User> createUserCourse(User user, Long idCourse);
+    Optional <UserCourse> createUserCourse(UserInDTO user, Long idCourse);
 
-    Optional<User> deleteUserCourse(User user, Long idCourse);
+    Optional<UserCourse> deleteUserCourse(UserInDTO user, Long idCourse);
 
-    Optional<UserCourse> findUserId(Course course, Long userId);
+    Optional<UserCourse> findUserId(Course course, UserInDTO user);
 
 }

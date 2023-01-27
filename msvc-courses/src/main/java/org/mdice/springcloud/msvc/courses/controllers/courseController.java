@@ -1,9 +1,12 @@
 package org.mdice.springcloud.msvc.courses.controllers;
 
 import feign.FeignException;
+import org.apache.catalina.startup.UserConfig;
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
+import org.mdice.springcloud.msvc.courses.persistences.models.UserInDTO;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.CourseStatus;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.UserCourse;
 import org.mdice.springcloud.msvc.courses.services.CourseService;
 import org.mdice.springcloud.msvc.courses.services.DTO.CourseInDTO;
 import org.springframework.http.HttpStatus;
@@ -141,9 +144,29 @@ public class courseController {
     }
 
     @PutMapping("/add-user/{idCourse}")
-    public ResponseEntity<?> addUserToCourse(@RequestBody User user, @PathVariable Long idCourse){
+    public ResponseEntity<?> addUserToCourse(@RequestBody UserInDTO user, @PathVariable Long idCourse){
 
-        Optional<User> o;
+        Optional<Course> oc = service.findCourseById(idCourse);
+
+        Course course = oc.get();
+
+        if (oc.isEmpty()){
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error","Course not exists"));
+
+        }
+
+        Optional<UserCourse> ou = service.findUserId(course, user);
+
+        if (ou.isPresent()) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error","User already exists in the course"));
+
+        }
+
+        Optional<UserCourse> o;
 
         try {
 
@@ -154,25 +177,25 @@ public class courseController {
         catch (FeignException e) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-
-                    .body(Collections.singletonMap("error","User no exist or Api not response" + e.getMessage()));
-
-        }
-
-        if (o.isPresent()) {
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(o.get());
+                    .body(Collections.singletonMap("error","Api not response" + e.getMessage()));
 
         }
 
-        return ResponseEntity.notFound().build();
+        if (o.isEmpty()) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error","Username not exists"));
+
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(o.get());
 
     }
 
     @PostMapping("/create-user/{idCourse}")
-    public ResponseEntity<?> createUserToCourse(@RequestBody User user, @PathVariable Long idCourse){
+    public ResponseEntity<?> createUserToCourse(@RequestBody UserInDTO user, @PathVariable Long idCourse){
 
-        Optional<User> o;
+        Optional<UserCourse> o;
 
         try {
 
@@ -180,27 +203,28 @@ public class courseController {
 
         }
 
-        catch (FeignException e) {
+        catch (FeignException e ) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("error","cannot create user or Api not response" + e.getMessage()));
+                    .body(Collections.singletonMap("error","Api not response" + e.getMessage()));
 
         }
 
         if (o.isPresent()) {
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(o.get());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error","Username already exists for this course"));
 
         }
 
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(o.get());
 
     }
 
     @DeleteMapping ("/delete-user/{idCourse}")
-    public ResponseEntity<?> deleteUserToCourse(@RequestBody User user, @PathVariable Long idCourse){
+    public ResponseEntity<?> deleteUserToCourse(@RequestBody UserInDTO user, @PathVariable Long idCourse){
 
-        Optional<User> o;
+        Optional<UserCourse> o;
 
         try {
 
@@ -211,17 +235,18 @@ public class courseController {
         catch (FeignException e) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("error","User no exist or Api not response" + e.getMessage()));
+                    .body(Collections.singletonMap("error","Api not response" + e.getMessage()));
 
         }
 
-        if (o.isPresent()) {
+        if (o.isEmpty()) {
 
-            return ResponseEntity.status(HttpStatus.OK).body(o.get());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error","Username not exists"));
 
         }
 
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(HttpStatus.OK).body(o.get());
 
     }
 
