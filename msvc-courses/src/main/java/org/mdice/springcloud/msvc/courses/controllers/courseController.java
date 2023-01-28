@@ -290,7 +290,9 @@ public class courseController {
 
             Map<String, String> errors = new HashMap<>();
 
-            result.getFieldErrors().forEach(err -> errors.put(err.getField(), "Field " + err.getField() + " " + err.getDefaultMessage()));
+            result.getFieldErrors()
+                    .forEach(err -> errors.put(err.getField(), "Field "
+                            + err.getField() + " " + err.getDefaultMessage()));
 
             return ResponseEntity.badRequest().body(errors);
 
