@@ -1,5 +1,6 @@
 package org.mdice.springcloud.msvc.courses.services;
 
+import org.mdice.springcloud.msvc.courses.persistences.models.Status;
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
 import org.mdice.springcloud.msvc.courses.persistences.models.UserInDTO;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;

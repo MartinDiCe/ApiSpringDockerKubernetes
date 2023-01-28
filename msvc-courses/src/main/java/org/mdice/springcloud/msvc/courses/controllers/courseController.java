@@ -2,6 +2,7 @@ package org.mdice.springcloud.msvc.courses.controllers;
 
 import feign.FeignException;
 import org.apache.catalina.startup.UserConfig;
+import org.mdice.springcloud.msvc.courses.persistences.models.Status;
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
 import org.mdice.springcloud.msvc.courses.persistences.models.UserInDTO;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.*;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -43,13 +45,14 @@ public class courseController {
 
         Optional<Course> userOptional = service.findCourseById(id);
 
-        if (userOptional.isPresent()){
+        if (userOptional.isEmpty()){
 
-            return ResponseEntity.ok().body(userOptional.get());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("Error: ", "Course not exists"));
 
         }
 
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(userOptional.get());
 
     }
 
@@ -60,21 +63,14 @@ public class courseController {
         ResponseEntity<Map<String, String>> errors = validate(result);
         if (errors != null) return errors;
 
-        Optional<Course> optionalCourse = service.findByName(courseInDTO.getName());
+        Optional<Course> oc = service.findByName(courseInDTO.getName());
 
-        if (optionalCourse.isPresent()) {
+        if (oc.isPresent()) {
 
-            Course courseDB = optionalCourse.get();
+            if (courseInDTO.getName().equalsIgnoreCase(oc.get().getName())) {
 
-            if (courseInDTO.getName().equalsIgnoreCase(courseDB.getName())) {
-
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Course already exists"));
-
-            }
-
-            if (service.findByName(courseInDTO.getName()).isPresent()) {
-
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Course already exists"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Collections.singletonMap("Error: ", "Course already exists"));
 
             }
         }
@@ -91,21 +87,14 @@ public class courseController {
         ResponseEntity<Map<String, String>> errors = validate(result);
         if (errors != null) return errors;
 
-        Optional<Course> optionalCourse = service.findCourseById(id);
+        Optional<Course> oc = service.findCourseById(id);
 
-        if (optionalCourse.isPresent()) {
+        if (oc.isPresent()) {
 
-            Course courseDB = optionalCourse.get();
+            if (courseInDTO.getName().equalsIgnoreCase(oc.get().getName())) {
 
-            if (courseInDTO.getName().equalsIgnoreCase(courseDB.getName())) {
-
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Course already exists"));
-
-            }
-
-            if (service.findByName(courseInDTO.getName()).isPresent()) {
-
-                return ResponseEntity.badRequest().body(Collections.singletonMap("Error: ", "Course already exists"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Collections.singletonMap("Error: ", "Course already exists"));
 
             }
         }
@@ -117,19 +106,38 @@ public class courseController {
     }
 
     @PutMapping("change-status/{id}")
-    public ResponseEntity<?> activate(@PathVariable("id") Long id, @Valid @RequestBody CourseStatus status){
+    public ResponseEntity<?> changeStatus(@PathVariable("id") Long id, @RequestBody CourseStatus status){
+
+        Optional<Course> oc = service.findCourseById(id);
+
+        if (oc.isEmpty()) {
+
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Collections.singletonMap("Error: ", "Course not exists"));
+
+        }
 
         this.service.newStatus(id, status);
 
         return ResponseEntity.status(HttpStatus.OK)
-                        .body("Course with id: " +id +" was updated to new status: " +status+ " successfully");
+                        .body(Collections.singletonMap("Success: ", "Course with id: "
+                                +id +" was updated to new status: " +status+ " successfully"));
 
     }
 
     @GetMapping("/status/{status}")
-    public List<Course> findAllByStatus(@PathVariable("status") CourseStatus status){
+    public ResponseEntity<?> findAllByStatus(@PathVariable("status") CourseStatus status){
 
-        return this.service.finAllByStatus(status);
+        List<Course> courses = this.service.finAllByStatus(status);
+
+        if (courses.isEmpty()){
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error","Status not exists"));
+
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(courses);
 
     }
 
@@ -148,8 +156,6 @@ public class courseController {
 
         Optional<Course> oc = service.findCourseById(idCourse);
 
-        Course course = oc.get();
-
         if (oc.isEmpty()){
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -157,12 +163,22 @@ public class courseController {
 
         }
 
-        Optional<UserCourse> ou = service.findUserId(course, user);
+        try {
 
-        if (ou.isPresent()) {
+            Optional<UserCourse> ou = service.findUserId(oc.get(), user);
+
+            if (ou.isPresent()) {
+
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Collections.singletonMap("error", "User already exists in the course"));
+
+            }
+        }
+
+        catch (FeignException e) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("error","User already exists in the course"));
+                    .body(Collections.singletonMap("error","Api not response " + e.getMessage()));
 
         }
 
@@ -215,7 +231,7 @@ public class courseController {
         catch (FeignException e ) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("error","Api not response" + e.getMessage()));
+                    .body(Collections.singletonMap("error","Api not response " + e.getMessage()));
 
         }
 
@@ -253,7 +269,7 @@ public class courseController {
         catch (FeignException e) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("error","Api not response" + e.getMessage()));
+                    .body(Collections.singletonMap("error","Api not response " + e.getMessage()));
 
         }
 
