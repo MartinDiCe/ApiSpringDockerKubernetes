@@ -34,7 +34,7 @@ public interface CourseService {
 
     Optional <UserCourse> createUserCourse(UserInDTO user, Long idCourse);
 
-    Optional<UserCourse> deleteUserCourse(UserInDTO user, Long idCourse);
+    Optional<Course> deleteUserCourse(UserInDTO user, Long idCourse);
 
     Optional<UserCourse> findUserId(Course course, UserInDTO user);
 

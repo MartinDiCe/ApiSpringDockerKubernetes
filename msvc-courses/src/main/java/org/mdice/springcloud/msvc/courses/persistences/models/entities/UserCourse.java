@@ -2,6 +2,8 @@ package org.mdice.springcloud.msvc.courses.persistences.models.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.mdice.springcloud.msvc.courses.persistences.models.User;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -28,19 +30,21 @@ public class UserCourse {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object obj) {
 
-        if (this == o) {
+        if (this == obj) {
 
             return true;
         }
 
-        if (!(o instanceof UserCourse obj)){
+        if (!(obj instanceof UserCourse)){
 
             return false;
         }
 
-        return Objects.equals(this.userId, obj.userId);
+        UserCourse o = (UserCourse) obj;
+
+        return  this.userId != null && this.userId.equals(o.userId);
 
     }
 }

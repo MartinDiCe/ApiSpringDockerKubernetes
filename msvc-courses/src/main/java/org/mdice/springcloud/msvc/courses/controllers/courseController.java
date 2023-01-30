@@ -258,7 +258,7 @@ public class courseController {
 
         }
 
-        Optional<UserCourse> o;
+        Optional<Course> o;
 
         try {
 

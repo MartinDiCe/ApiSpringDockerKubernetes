@@ -7,6 +7,9 @@
     <list default="true" id="9afcd000-abb7-4187-b386-dea03d2cf98f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/UserCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/UserCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +134,7 @@
       <workItem from="1673986262021" duration="4975000" />
       <workItem from="1674245913661" duration="40077000" />
       <workItem from="1674567156171" duration="13755000" />
-      <workItem from="1674739555700" duration="37448000" />
+      <workItem from="1674739555700" duration="40582000" />
     </task>
     <servers />
   </component>
@@ -166,7 +169,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java</url>
-          <line>178</line>
+          <line>171</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -181,7 +184,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java</url>
-          <line>109</line>
+          <line>108</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -193,6 +196,26 @@
           <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java</url>
           <line>139</line>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/persistences/models/entities/UserCourse.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java</url>
+          <line>214</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java</url>
+          <line>275</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

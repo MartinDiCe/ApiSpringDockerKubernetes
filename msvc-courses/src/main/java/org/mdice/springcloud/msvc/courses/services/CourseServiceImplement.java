@@ -2,7 +2,6 @@ package org.mdice.springcloud.msvc.courses.services;
 
 import org.mdice.springcloud.msvc.courses.Clients.UserClientRest;
 import org.mdice.springcloud.msvc.courses.mapper.CourseInDTOToCourse;
-import org.mdice.springcloud.msvc.courses.persistences.models.Status;
 import org.mdice.springcloud.msvc.courses.persistences.models.User;
 import org.mdice.springcloud.msvc.courses.persistences.models.UserInDTO;
 import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
@@ -144,12 +143,6 @@ public class CourseServiceImplement implements CourseService{
 
         Optional<Course> o = repository.findById(idCourse);
 
-        if (o.isEmpty()) {
-
-            return Optional.empty();
-
-        }
-
         Optional<User> ou = client.getByUsername(user.getUsername());
 
         if (ou.isEmpty()) {
@@ -178,19 +171,13 @@ public class CourseServiceImplement implements CourseService{
 
         Optional<Course> o = repository.findById(idCourse);
 
-        if (o.isEmpty()) {
+        Optional<User> ou = client.getByUsername(user.getUsername());
+
+        if(ou.isPresent()) {
 
             return Optional.empty();
 
         }
-
-            Optional<User> ou = client.getByUsername(user.getUsername());
-
-            if(ou.isPresent()) {
-
-                return Optional.empty();
-
-            }
 
         UserInDTO msvcUserInDTO = new UserInDTO();
 
@@ -213,15 +200,9 @@ public class CourseServiceImplement implements CourseService{
 
     @Transactional
     @Override
-    public Optional<UserCourse> deleteUserCourse(UserInDTO user, Long idCourse) {
+    public Optional<Course> deleteUserCourse(UserInDTO user, Long idCourse) {
 
         Optional<Course> o = repository.findById(idCourse);
-
-        if (o.isEmpty()) {
-
-            return Optional.empty();
-
-        }
 
         Optional<User> ou = client.getByUsername(user.getUsername());
 
@@ -236,10 +217,21 @@ public class CourseServiceImplement implements CourseService{
         UserCourse userCourse = new UserCourse();
         userCourse.setUserId(msvcUser.getId());
 
+        List<UserCourse> uc = course.getUsersCourse();
+
+        for (UserCourse u : uc){
+
+            if (!(u.getUserId().equals(msvcUser.getId()))) {
+
+                return Optional.empty();
+
+            }
+        }
+
         course.removeUserCourse(userCourse);
         repository.save(course);
 
-        return Optional.of(userCourse);
+        return Optional.of(course);
 
     }
 
