@@ -1,12 +1,15 @@
 package org.mdice.springcloud.msvc.users.persistences.entities;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
-@Data
+
+@Getter
+@Setter
 @Entity
 @Table(name="users")
 public class User {
@@ -15,16 +18,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //la estrategia identity porque usamos mysql
     private Long id;
 
-    @NotBlank(message = "Username cannot be empty")
+    @NotBlank(message = "cannot be empty")
     @Column(nullable = true, length = 30, unique = true)
     private String username;
 
-    @Email
-    @NotBlank(message = "Email cannot be empty")
-    @Column(nullable = true,length = 50,unique = true)
+    @Email(message = "is not a valid email address")
+    @NotBlank(message = "cannot be empty")
+    @Column(nullable = true,length = 50, unique = true)
     private String email;
 
-    @NotBlank(message = "Password cannot be empty")
+    @NotBlank(message = "cannot be empty")
     @Column(nullable = true)
     private String password;
 
@@ -33,6 +36,5 @@ public class User {
     private Status status;
 
     private LocalDateTime updateDate;
-
 
 }

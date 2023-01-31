@@ -19,16 +19,15 @@ public interface UserRepository extends JpaRepository <User, Long> {
     public List<User> findAllByStatus(Status status);
 
     Optional<User> findByEmail(String email);
+
     Optional<User> findByUsername(String name);
 
     @Modifying
     @Query(value = "UPDATE users SET users.status = 0 , users.update_Date = CURRENT_TIMESTAMP WHERE id=:id", nativeQuery = true)
     public void activateUser(@Param("id") Long id);
 
-
     @Modifying
     @Query(value = "UPDATE users SET users.status = 1 , users.update_Date = CURRENT_TIMESTAMP WHERE id=:id", nativeQuery = true)
     public void unActivateUser(@Param("id") Long id);
-
 
 }

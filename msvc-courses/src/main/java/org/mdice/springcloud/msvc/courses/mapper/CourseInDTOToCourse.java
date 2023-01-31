@@ -1,12 +1,13 @@
 package org.mdice.springcloud.msvc.courses.mapper;
 
 
-import org.mdice.springcloud.msvc.courses.persistences.entities.Course;
-import org.mdice.springcloud.msvc.courses.persistences.entities.CourseStatus;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.CourseStatus;
 import org.mdice.springcloud.msvc.courses.services.DTO.CourseInDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+
 
 @Component
 public class CourseInDTOToCourse implements IMapper<CourseInDTO, Course>{
@@ -21,6 +22,6 @@ public class CourseInDTOToCourse implements IMapper<CourseInDTO, Course>{
         course.setUpdateDate(null);
 
         return course;
-    }
 
+    }
 }

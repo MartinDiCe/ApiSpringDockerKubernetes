@@ -1,12 +1,14 @@
 package org.mdice.springcloud.msvc.courses.services;
 
-import org.mdice.springcloud.msvc.courses.exceptions.ToDoExceptions;
+import org.mdice.springcloud.msvc.courses.Clients.UserClientRest;
 import org.mdice.springcloud.msvc.courses.mapper.CourseInDTOToCourse;
-import org.mdice.springcloud.msvc.courses.persistences.entities.Course;
-import org.mdice.springcloud.msvc.courses.persistences.entities.CourseStatus;
+import org.mdice.springcloud.msvc.courses.persistences.models.User;
+import org.mdice.springcloud.msvc.courses.persistences.models.UserInDTO;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.Course;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.CourseStatus;
+import org.mdice.springcloud.msvc.courses.persistences.models.entities.UserCourse;
 import org.mdice.springcloud.msvc.courses.persistences.repositories.CourseRepository;
 import org.mdice.springcloud.msvc.courses.services.DTO.CourseInDTO;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,16 +16,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class CourseServiceImplement implements CourseService{
 
     private final CourseRepository repository;
     private final CourseInDTOToCourse mapper;
+    private final UserClientRest client;
 
-    public CourseServiceImplement(CourseRepository repository, CourseInDTOToCourse mapperCourse) {
+    public CourseServiceImplement(CourseRepository repository, CourseInDTOToCourse mapperCourse, UserClientRest client) {
 
         this.repository = repository;
         this.mapper = mapperCourse;
+        this.client = client;
 
     }
 
@@ -35,31 +40,29 @@ public class CourseServiceImplement implements CourseService{
 
     }
 
-
     @Override
     public Optional<Course> findCourseById(Long id) {
 
         Optional<Course> optional = this.repository.findById(id);
 
         if (optional.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         return repository.findById(id);
 
     }
 
-
     @Override
     @Transactional
     public Course saveCourse(CourseInDTO courseInDTO) {
 
         Course course = mapper.map(courseInDTO);
-
         return repository.save(course);
 
     }
-
 
     @Override
     @Transactional
@@ -68,13 +71,14 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> optionalUser = this.repository.findById(id);
 
         if (optionalUser.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         this.repository.deleteById(id);
 
     }
-
 
     @Override
     @Transactional
@@ -83,18 +87,20 @@ public class CourseServiceImplement implements CourseService{
         Optional<Course> optional = this.repository.findById(id);
 
         if (optional.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         Course course = optional.get();
         course.setName(courseInDTO.getName());
         course.setUpdateDate(LocalDateTime.now());
+
         repository.save(course);
 
         return course;
 
     }
-
 
     @Override
     @Transactional(readOnly = true)
@@ -107,14 +113,16 @@ public class CourseServiceImplement implements CourseService{
     @Override
     @Transactional
     public Course newStatus(Long id, CourseStatus status) {
+
         Optional<Course> optional = this.repository.findById(id);
 
         if (optional.isEmpty()){
-            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+
+            this.repository.findById(id);
+
         }
 
         Course course = optional.get();
-
         course.setCourseStatus(status);
         repository.save(course);
 
@@ -124,6 +132,141 @@ public class CourseServiceImplement implements CourseService{
 
     @Override
     public Optional<Course> findByName(String name) {
+
         return repository.findByName(name);
+
+    }
+
+    @Transactional
+    @Override
+    public Optional<UserCourse> addUser(UserInDTO user, Long idCourse) {
+
+        Optional<Course> o = repository.findById(idCourse);
+
+        Optional<User> ou = client.getByUsername(user.getUsername());
+
+        if (ou.isEmpty()) {
+
+            return Optional.empty();
+
+        }
+
+        User msvcUser = ou.get();
+        Course course = o.get();
+
+
+        UserCourse userCourse = new UserCourse();
+        userCourse.setUserId(msvcUser.getId());
+
+        course.addUserCourse(userCourse);
+        repository.save(course);
+
+        return Optional.of(userCourse);
+
+    }
+
+    @Transactional
+    @Override
+    public Optional<UserCourse> createUserCourse(UserInDTO user, Long idCourse) {
+
+        Optional<Course> o = repository.findById(idCourse);
+
+        Optional<User> ou = client.getByUsername(user.getUsername());
+
+        if(ou.isPresent()) {
+
+            return Optional.empty();
+
+        }
+
+        UserInDTO msvcUserInDTO = new UserInDTO();
+
+        msvcUserInDTO.setUsername(user.getUsername());
+        msvcUserInDTO.setEmail(user.getEmail());
+        msvcUserInDTO.setPassword(user.getPassword());
+
+        User msvcNewUser = client.create(msvcUserInDTO);
+
+        Course course = o.get();
+        UserCourse userCourse = new UserCourse();
+        userCourse.setUserId(msvcNewUser.getId());
+
+        course.addUserCourse(userCourse);
+        repository.save(course);
+
+        return Optional.of(userCourse);
+
+    }
+
+    @Transactional
+    @Override
+    public Optional<Course> deleteUserCourse(UserInDTO user, Long idCourse) {
+
+        Optional<Course> o = repository.findById(idCourse);
+
+        Optional<User> ou = client.getByUsername(user.getUsername());
+
+        if(ou.isEmpty()) {
+
+            return Optional.empty();
+
+        }
+
+        User msvcUser = ou.get();
+        Course course = o.get();
+        UserCourse userCourse = new UserCourse();
+        userCourse.setUserId(msvcUser.getId());
+
+        List<UserCourse> uc = course.getUsersCourse();
+
+        for (UserCourse u : uc){
+
+            if (!(u.getUserId().equals(msvcUser.getId()))) {
+
+                return Optional.empty();
+
+            }
+        }
+
+        course.removeUserCourse(userCourse);
+        repository.save(course);
+
+        return Optional.of(course);
+
+    }
+
+    @Override
+    public Optional<UserCourse> findUserId(Course course, UserInDTO user) {
+
+        Optional<Course> o = repository.findById(course.getId());
+
+        if (o.isPresent()) {
+
+            List<UserCourse> userCourse = o.get().getUsersCourse();
+
+            Optional <User> ou = client.getByUsername(user.getUsername());
+
+            if (ou.isEmpty()){
+
+                return Optional.empty();
+
+            }
+
+            for (UserCourse uc: userCourse){
+
+                if (uc.getUserId().equals(ou.get().getId())) {
+
+                    return Optional.of(uc);
+
+                }
+
+            }
+
+            return Optional.empty();
+
+        }
+
+        return Optional.empty();
+
     }
 }

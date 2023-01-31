@@ -7,6 +7,7 @@ import org.mdice.springcloud.msvc.users.services.DTO.UserInDTO;
 import java.util.List;
 import java.util.Optional;
 
+
 public interface UserService {
 
     List<User> listUsers();
@@ -27,6 +28,6 @@ public interface UserService {
 
     Optional<User> findByEmail(String email);
 
-    Optional<User> findByUsername(String name);
+    Optional<User> findByUsername(String username);
 
 }

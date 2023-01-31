@@ -15,6 +15,7 @@ import java.util.Collections;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -23,9 +24,11 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
+
     }
 
     private ApiInfo apiInfo() {
+
         return new ApiInfo(
                 "Api Courses",
                 "My api courses documentation",
@@ -33,5 +36,6 @@ public class SwaggerConfig {
                 "Term of service",
                 new Contact("Mdice Tech","https://github.com/MartinDiCe/ApiSpringDockerKubernetes", "jamartindice@gmail.com"),
                 "License of API", "Api License URL", Collections.emptyList());
+
     }
 }

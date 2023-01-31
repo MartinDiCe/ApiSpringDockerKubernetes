@@ -6,12 +6,17 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
 @ControllerAdvice
 public class ExceptionsHandler extends ResponseEntityExceptionHandler {
-    @org.springframework.web.bind.annotation.ExceptionHandler(value = {ToDoExceptions.class})
-    protected ResponseEntity <Object> handConflict (ToDoExceptions ex, WebRequest request){
-        String bodyOfResponse = ex.getMessage();
-        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), ex.getHttpStatus(), request);
-    }
 
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = {ToDoExceptions.class})
+
+    protected ResponseEntity <Object> handConflict (ToDoExceptions ex, WebRequest request){
+
+        String bodyOfResponse = ex.getMessage();
+
+        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), ex.getHttpStatus(), request);
+
+    }
 }

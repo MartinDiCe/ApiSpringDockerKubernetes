@@ -9,7 +9,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>org.mdice.springcloud.msvc.users</groupId>
-	<artifactId>msvc-usuarios</artifactId>
+	<artifactId>msvc-users</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>msvc-usuarios</name>
 	<description>Api users manage</description>
