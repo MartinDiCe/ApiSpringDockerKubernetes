@@ -148,7 +148,7 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional<User> findByEmail(String email) {
 
         return repository.findByEmail(email);
@@ -156,11 +156,18 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional<User> findByUsername(String username) {
 
         return repository.findByUsername(username);
 
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<User> findAllByIds(Iterable<Long> ids) {
+
+        return (List<User>) repository.findAllById(ids);
+
+    }
 }

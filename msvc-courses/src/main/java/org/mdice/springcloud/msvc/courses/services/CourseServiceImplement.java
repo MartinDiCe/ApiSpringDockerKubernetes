@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -263,6 +264,35 @@ public class CourseServiceImplement implements CourseService{
             }
 
             return Optional.empty();
+
+        }
+
+        return Optional.empty();
+
+    }
+
+    @Override
+    public Optional<Course> usersById(Long courseId) {
+
+        Optional<Course> o = repository.findById(courseId);
+
+        if (o.isPresent()) {
+
+            Course course = o.get();
+
+            if (!course.getUsersCourse().isEmpty()) {
+
+                List<Long> ids = course
+                        .getUsersCourse().stream().map(cu -> cu.getUserId())
+                        .collect(Collectors.toList());
+
+                List<User> users = client.getUsersByCourse(ids);
+
+                course.setUsers(users);
+
+            }
+
+            return Optional.of(course);
 
         }
 

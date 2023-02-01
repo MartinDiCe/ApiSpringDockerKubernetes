@@ -169,6 +169,13 @@ public class UserController {
 
     }
 
+    @GetMapping("/users-course")
+    public ResponseEntity<?> getUsersByCourse(@RequestParam List<Long> ids){
+
+        return ResponseEntity.ok(service.findAllByIds(ids));
+
+    }
+
     @PatchMapping("user-activate/{id}")
     public ResponseEntity<?> activate(@PathVariable("id") Long id){
 

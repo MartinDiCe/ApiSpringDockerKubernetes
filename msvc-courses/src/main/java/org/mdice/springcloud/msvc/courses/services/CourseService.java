@@ -38,4 +38,6 @@ public interface CourseService {
 
     Optional<UserCourse> findUserId(Course course, UserInDTO user);
 
+    Optional<Course> usersById (Long courseId);
+
 }
