@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9afcd000-abb7-4187-b386-dea03d2cf98f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/Clients/UserClientRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/Clients/UserClientRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/controllers/courseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-courses/src/main/java/org/mdice/springcloud/msvc/courses/services/CourseServiceImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserServiceImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,7 +132,7 @@
       <workItem from="1674567156171" duration="13755000" />
       <workItem from="1674739555700" duration="51121000" />
       <workItem from="1675255719129" duration="689000" />
-      <workItem from="1675257055981" duration="5079000" />
+      <workItem from="1675257055981" duration="5262000" />
     </task>
     <servers />
   </component>
@@ -224,7 +217,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/msvc-users/src/main/java/org/mdice/springcloud/msvc/users/services/UserServiceImplement.java</url>
-          <line>168</line>
+          <line>169</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
