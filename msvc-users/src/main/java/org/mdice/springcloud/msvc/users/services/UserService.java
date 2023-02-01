@@ -30,4 +30,6 @@ public interface UserService {
 
     Optional<User> findByUsername(String username);
 
+    List<User> findAllByIds(Iterable<Long> ids);
+
 }

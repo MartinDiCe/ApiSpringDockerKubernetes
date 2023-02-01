@@ -163,4 +163,10 @@ public class UserServiceImplement implements UserService {
 
     }
 
+    @Override
+    public List<User> findAllByIds(Iterable<Long> ids) {
+
+        return (List<User>) repository.findAllById(ids);
+
+    }
 }

@@ -43,17 +43,27 @@ public class courseController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
 
-        Optional<Course> userOptional = service.findCourseById(id);
+        try {
 
-        if (userOptional.isEmpty()){
+           Optional<Course> userOptional = service.usersById(id);
+
+            if (userOptional.isEmpty()){
+
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Collections.singletonMap("Error: ", "Course not exists"));
+
+            }
+
+            return ResponseEntity.ok().body(userOptional.get());
+
+       }
+
+        catch (FeignException e ) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("Error: ", "Course not exists"));
+                    .body(Collections.singletonMap("error","Api not response " + e.getMessage()));
 
         }
-
-        return ResponseEntity.ok().body(userOptional.get());
-
     }
 
     @PostMapping
